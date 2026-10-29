@@ -1,0 +1,1 @@
+@props(['value'])<span @class(['status','blocked'=>$value==='Blocked','testing'=>$value==='Testing','complete'=>$value==='Completed'])><span aria-hidden="true" class="status-dot"></span>{{ $value }}</span>

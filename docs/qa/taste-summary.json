@@ -1,0 +1,167 @@
+{
+  "style": "framed-sheet",
+  "seed": 421114848,
+  "source_commit": "12af471f627f866411b4bd785b19646d3672784c",
+  "skill_hash": "6ac8ba6089dcbc303744a507a4587113c5d845ca2f658b3ce2b0b5eab108fb0d",
+  "source": "https://github.com/Leonxlnx/taste-skill",
+  "reports": {
+    "project-form": {
+      "failures": 0,
+      "findings": [],
+      "viewports": [
+        {
+          "width": 1440
+        },
+        {
+          "width": 768
+        },
+        {
+          "width": 390
+        }
+      ]
+    },
+    "login": {
+      "failures": 0,
+      "findings": [
+        {
+          "level": "WARN",
+          "id": "unused-canvas",
+          "width": 1440,
+          "message": "The content stops 253px short of the right edge while it starts 28px from the sidebar.",
+          "fix": "Let the grid fill the canvas (columns in fr units), or centre a capped canvas with equal margins. A dead strip on one side reads as unfinished."
+        }
+      ],
+      "viewports": [
+        {
+          "width": 1440
+        },
+        {
+          "width": 768
+        },
+        {
+          "width": 390
+        }
+      ]
+    },
+    "checkpoint-form": {
+      "failures": 0,
+      "findings": [],
+      "viewports": [
+        {
+          "width": 1440
+        },
+        {
+          "width": 768
+        },
+        {
+          "width": 390
+        }
+      ]
+    },
+    "backup": {
+      "failures": 0,
+      "findings": [],
+      "viewports": [
+        {
+          "width": 1440
+        },
+        {
+          "width": 768
+        },
+        {
+          "width": 390
+        }
+      ]
+    },
+    "project": {
+      "failures": 0,
+      "findings": [
+        {
+          "level": "WARN",
+          "id": "no-data-hue",
+          "width": 1440,
+          "message": "The screen has 3 charts or timelines but no hue on any of its data (0.0% coloured pixels).",
+          "fix": "Put the style's one chart hue (or the brand's) on the screen's main data element: today's line, the booked bars, the current period, the cover margin. Keep the chrome neutral; the hue still stays under the style's colour budget.",
+          "alsoAt": [
+            768
+          ]
+        }
+      ],
+      "viewports": [
+        {
+          "width": 1440
+        },
+        {
+          "width": 768
+        },
+        {
+          "width": 390
+        }
+      ]
+    },
+    "projects": {
+      "failures": 0,
+      "findings": [
+        {
+          "level": "WARN",
+          "id": "tiny-text",
+          "width": 1440,
+          "message": "51% of the text is under 13px.",
+          "fix": "Data and labels read at 13\u201314px; keep 11\u201312px for sublines and axis ticks.",
+          "alsoAt": [
+            768,
+            390
+          ]
+        }
+      ],
+      "viewports": [
+        {
+          "width": 1440
+        },
+        {
+          "width": 768
+        },
+        {
+          "width": 390
+        }
+      ]
+    },
+    "dashboard": {
+      "failures": 0,
+      "findings": [
+        {
+          "level": "WARN",
+          "id": "tiny-text",
+          "width": 1440,
+          "message": "57% of the text is under 13px.",
+          "fix": "Data and labels read at 13\u201314px; keep 11\u201312px for sublines and axis ticks.",
+          "alsoAt": [
+            768,
+            390
+          ]
+        },
+        {
+          "level": "WARN",
+          "id": "no-data-hue",
+          "width": 1440,
+          "message": "The screen has 5 charts or timelines but no hue on any of its data (0.0% coloured pixels).",
+          "fix": "Put the style's one chart hue (or the brand's) on the screen's main data element: today's line, the booked bars, the current period, the cover margin. Keep the chrome neutral; the hue still stays under the style's colour budget.",
+          "alsoAt": [
+            768
+          ]
+        }
+      ],
+      "viewports": [
+        {
+          "width": 1440
+        },
+        {
+          "width": 768
+        },
+        {
+          "width": 390
+        }
+      ]
+    }
+  }
+}

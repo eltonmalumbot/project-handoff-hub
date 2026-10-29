@@ -1,0 +1,1 @@
+<svg class="brand-mark" viewBox="0 0 32 36" fill="none" aria-hidden="true"><path d="M4 5h17v11H10v15H4V5Z" stroke="currentColor" stroke-width="2.5"/><path d="M28 31H15V20h7V5h6v26Z" stroke="currentColor" stroke-width="2.5"/></svg>

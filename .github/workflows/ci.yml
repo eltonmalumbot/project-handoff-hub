@@ -1,0 +1,99 @@
+name: Laravel quality
+on:
+  push:
+    branches: [main, feat/laravel-handoff-hub-mvp]
+  pull_request:
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  php:
+    name: PHP / ${{ matrix.database }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        database: [sqlite, pgsql]
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: handoff_test
+          POSTGRES_PASSWORD: test-only-password
+          POSTGRES_DB: handoff_test
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U handoff_test"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      APP_ENV: testing
+      DB_CONNECTION: ${{ matrix.database }}
+      DB_DATABASE: ${{ matrix.database == 'pgsql' && 'handoff_test' || ':memory:' }}
+      DB_HOST: 127.0.0.1
+      DB_PORT: 5432
+      DB_USERNAME: handoff_test
+      DB_PASSWORD: test-only-password
+      DB_SSLMODE: disable
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: mbstring, xml, curl, zip, pdo_sqlite, pdo_pgsql
+          coverage: none
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: composer install --no-interaction --prefer-dist
+      - run: cp .env.example .env
+      - run: php artisan key:generate
+      - run: composer test
+      - run: vendor/bin/pint --test
+      - run: composer audit
+      - run: npm ci
+      - run: npm run build
+      - run: npm audit --audit-level=high
+      - run: php artisan route:list --except-vendor
+  browser:
+    name: Browser / responsive workflows
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: mbstring, xml, curl, zip, pdo_sqlite
+          coverage: none
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: composer install --no-interaction --prefer-dist
+      - run: npm ci
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - name: Prepare isolated browser database
+        run: |
+          cp tests/Browser/environment.example .env.testing
+          sed -i "s|/absolute/path/project-handoff-hub|$GITHUB_WORKSPACE|g" .env.testing
+          php artisan key:generate --env=testing
+          php artisan handoff:browser-setup --env=testing
+          echo "PLAYWRIGHT_CHROMIUM_EXECUTABLE=$(node --input-type=module -e 'import {chromium} from "@playwright/test"; console.log(chromium.executablePath())')" >> "$GITHUB_ENV"
+      - name: Test responsive user stories
+        run: |
+          APP_ENV=testing BROWSER_TEST=1 BROWSER_GITHUB_FAKE=1 php -S 127.0.0.1:8000 -t public tests/Browser/server.php > storage/logs/browser-server.log 2>&1 &
+          for attempt in $(seq 1 30); do curl -fsS http://127.0.0.1:8000/login >/dev/null && break; sleep 1; done
+          npx playwright test
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: browser-qa
+          path: |
+            playwright-report/
+            test-results/
+            docs/screenshots/
+            storage/logs/browser-server.log
+          retention-days: 7

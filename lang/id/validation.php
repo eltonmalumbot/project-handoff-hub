@@ -1,0 +1,42 @@
+<?php
+
+return [
+    'accepted' => ':attribute harus disetujui.',
+    'after' => ':attribute harus setelah :date.',
+    'before' => ':attribute harus sebelum :date.',
+    'array' => ':attribute harus berupa daftar dengan struktur yang sesuai.',
+    'date' => ':attribute harus berupa tanggal yang valid.',
+    'distinct' => ':attribute memiliki nilai duplikat.',
+    'file' => ':attribute harus berupa berkas.',
+    'in' => 'Pilihan :attribute tidak valid.',
+    'integer' => ':attribute harus berupa bilangan bulat.',
+    'max' => [
+        'array' => ':attribute maksimal :max elemen.',
+        'file' => ':attribute maksimal :max KiB.',
+        'numeric' => ':attribute maksimal :max.',
+        'string' => ':attribute maksimal :max karakter.',
+    ],
+    'min' => [
+        'numeric' => ':attribute minimal :min.',
+        'string' => ':attribute minimal :min karakter.',
+    ],
+    'present' => ':attribute harus disertakan.',
+    'regex' => 'Format :attribute tidak valid.',
+    'required' => ':attribute wajib diisi.',
+    'string' => ':attribute harus berupa teks.',
+    'url' => ':attribute harus berupa URL HTTP/HTTPS yang valid.',
+    'uuid' => ':attribute harus berupa UUID yang valid.',
+    'attributes' => [
+        'name' => 'nama proyek', 'description' => 'deskripsi', 'repository_url' => 'URL repositori',
+        'category' => 'kategori', 'status' => 'status', 'priority' => 'prioritas',
+        'deployment_url' => 'URL deployment', 'tags' => 'tag', 'tags.*' => 'tag', 'notes' => 'catatan',
+        'title' => 'judul checkpoint', 'occurred_at' => 'tanggal dan waktu', 'branch' => 'branch',
+        'commit_sha' => 'commit SHA', 'pr_url' => 'URL pull request', 'pr_number' => 'nomor pull request',
+        'implementation_summary' => 'ringkasan implementasi', 'completed_tasks' => 'tugas selesai',
+        'tests_executed' => 'tes yang dijalankan', 'ci_results' => 'hasil CI', 'deployment_state' => 'kondisi deployment',
+        'outstanding_bugs' => 'bug tersisa', 'blockers' => 'blocker', 'next_tasks' => 'tugas berikutnya',
+        'security_restrictions' => 'batasan keamanan', 'agent_instructions' => 'instruksi agen',
+        'confirmation' => 'konfirmasi nama proyek', 'backup' => 'berkas backup', 'confirm' => 'konfirmasi impor',
+        'projects' => 'daftar proyek', 'version' => 'versi backup', 'exported_at' => 'waktu ekspor',
+    ],
+];
