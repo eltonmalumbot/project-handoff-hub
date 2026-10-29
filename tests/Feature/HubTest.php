@@ -441,8 +441,8 @@ class HubTest extends TestCase
     {
         $project = $this->project();
         $this->actingAs($this->owner);
-        foreach (['/dashboard', '/projects', '/projects/create', route('projects.edit',$project), route('checkpoints.create',$project), '/backup'] as $url) {
-            $this->get($url)->assertOk()->assertHeader('X-Frame-Options','DENY')->assertHeader('X-Content-Type-Options','nosniff');
+        foreach (['/dashboard', '/projects', '/projects/create', route('projects.edit', $project), route('checkpoints.create', $project), '/backup'] as $url) {
+            $this->get($url)->assertOk()->assertHeader('X-Frame-Options', 'DENY')->assertHeader('X-Content-Type-Options', 'nosniff');
         }
     }
 }

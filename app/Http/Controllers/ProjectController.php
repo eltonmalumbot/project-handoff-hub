@@ -81,6 +81,6 @@ class ProjectController extends Controller
         Gate::authorize('update', $project);
         $github->sync($project);
 
-        return back()->with('success','Snapshot GitHub diperbarui. Periksa peringatan jika ada data tidak tersedia.');
+        return back()->with('success', 'Snapshot GitHub diperbarui. Periksa peringatan jika ada data tidak tersedia.');
     }
 }
