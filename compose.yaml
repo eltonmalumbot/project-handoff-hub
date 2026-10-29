@@ -1,0 +1,14 @@
+services:
+  app:
+    build: .
+    ports:
+      - "127.0.0.1:8080:8080"
+    env_file: .env.production
+    environment:
+      APP_ENV: production
+      APP_DEBUG: "false"
+      SESSION_DRIVER: database
+      CACHE_STORE: database
+      SESSION_SECURE_COOKIE: "true"
+      SESSION_ENCRYPT: "true"
+    restart: unless-stopped
