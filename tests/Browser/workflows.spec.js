@@ -60,7 +60,7 @@ for (const width of widths) {
   await expect(page.getByRole('heading',{name:`Implementasi awal ${width}`})).toBeVisible();
   await page.getByRole('link',{name:'Checkpoint baru',exact:true}).click();
   await page.getByLabel('Judul checkpoint').fill(`Tahap berikutnya ${width}`);
-  await page.getByLabel('Tanggal dan waktu (WIB)').fill('2026-10-30T19:00');
+  await page.getByLabel('Tanggal dan waktu (WIB)').fill(new Date(Date.now()+2*86400000).toISOString().slice(0,16));
   await page.getByLabel('Tugas berikutnya').fill('Langkah terbaru dari checkpoint kedua.');
   await page.getByRole('button',{name:'Simpan checkpoint'}).click();
   await expect(page.locator('.markdown-preview')).toContainText('Langkah terbaru dari checkpoint kedua.');
